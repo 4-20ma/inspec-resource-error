@@ -155,3 +155,48 @@ Using chefdk inspec-1.11.0 gem
     	from /opt/chefdk/embedded/lib/ruby/gems/2.3.0/gems/inspec-1.11.0/bin/inspec:12:in `<top (required)>'
     	from /opt/chefdk/bin/inspec:59:in `load'
     	from /opt/chefdk/bin/inspec:59:in `<main>'    
+
+
+## Works
+
+Rename `resource_b.rb` to `_resource_b.rb`
+
+`libraries/_resource_b.rb`
+
+    class ResourceB < Inspec.resource(1)
+      name 'resource_b'
+      ...
+    end # class
+
+`libraries/resource_a.rb`
+
+    class ResourceA < ResourceB
+      name 'resource_a'
+      ...
+    end # class
+
+Using inspec-1.18.0 gem
+
+    $ inspec check .
+    WARN: Unresolved specs during Gem::Specification.reset:
+          nokogiri (~> 1.6)
+    WARN: Clearing out unresolved specs.
+    Please report a bug if this causes problems.
+    Location:    .
+    Profile:     inspec-resource-error
+    Controls:    3
+    Timestamp:   2017-03-30T21:29:07-05:00
+    Valid:       true
+
+    No errors or warnings
+
+Using chefdk inspec-1.11.0 gem
+
+    $ chef exec inspec check .
+    Location:    .
+    Profile:     inspec-resource-error
+    Controls:    3
+    Timestamp:   2017-03-30T21:30:09-05:00
+    Valid:       true
+
+    No errors or warnings
