@@ -2,6 +2,8 @@
 
 This example reproduces an error with resource class inheritance.
 
+Refer to [chef/inspec issue #1613](https://github.com/chef/inspec/issues/1613).
+
 
 ## Versions
 
